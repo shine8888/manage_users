@@ -1,12 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="author" content="colorlib.com">
 <link href="https://fonts.googleapis.com/css?family=Poppins"
@@ -16,11 +16,11 @@
 </head>
 <body>
 	<div class="s003">
-		<form>
+		<form action="ListController" method="GET">
 			<div class="inner-form">
 				<div class="input-field first-wrap">
 					<div class="input-select">
-						<select data-trigger="" name="choices-single-defaul">
+						<select data-trigger="" name="mode">
 							<option placeholder="">Category</option>
 							<option>Apple</option>
 							<option>SamSung</option>
@@ -32,15 +32,12 @@
 						</select>
 					</div>
 				</div>
-				<form>
 				<div class="input-field second-wrap">
-					<input name="searching"  type="text" 
+					<input type="text" name="searching"
 						placeholder="Enter Your Keywords?" />
 				</div>
 				<div class="input-field third-wrap">
-					<button class="btn-search" type="button"
-						onclick="
-								window.location.href='${pageContext.request.contextPath}/SearchController'">
+					<button class="btn-search" type="submit">
 						<svg class="svg-inline--fa fa-search fa-w-16" aria-hidden="true"
 							data-prefix="fas" data-icon="search" role="img"
 							xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
@@ -49,7 +46,6 @@
               </svg>
 					</button>
 				</div>
-				</form>
 			</div>
 		</form>
 	</div>

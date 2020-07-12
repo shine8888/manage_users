@@ -11,6 +11,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import manager.common.Constant;
+
+
+
 /**
  * Servlet implementation class LoginController
  */
@@ -28,6 +32,7 @@ public class LoginController extends HttpServlet {
 		// Get data from form login
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
+		String contextPath = request.getContextPath();
 		
 		// Read information of account in web.xml
 		String uid = getServletContext().getInitParameter("username");
@@ -50,8 +55,8 @@ public class LoginController extends HttpServlet {
 		if(listError.size() == 0) {
 			
 			if(uid.equals(username) && pwd.equals(password)) {
-				// Redirect to Home.jsp
-				response.sendRedirect("View/jsp/Home.jsp");
+				// Điều hướng đến servlet ListUser.do vào màn hình ADM002
+				response.sendRedirect(contextPath + Constant.URL_LIST_ITEMS+"?mode=default");
 			
 			// Back to Login.jsp with list error
 			} else {

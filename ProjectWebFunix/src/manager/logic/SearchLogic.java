@@ -15,9 +15,22 @@ import manager.model.Product;
  */
 public class SearchLogic {
 	public ListProductDAO list;
-	public List<Product> searchingItems(String name) throws Exception{
+
+	public List<Product> getListItems(int offset, int limit, String brandName, String nameProduct) throws Exception {
 		list = new ListProductDAO();
-		List<Product> listItems = list.search(name);
+		List<Product> listItems = list.getAllItems(offset, limit, brandName, nameProduct);
 		return listItems;
+	}
+
+	public int getAllProduct(String name) throws Exception {
+		list = new ListProductDAO();
+		int total = list.getTotalItems(name);
+		return total;
+	}
+	
+	public Product getProduct(int id) throws Exception {
+		list = new ListProductDAO();
+		Product p = list.getProduct(id);
+		return p;
 	}
 }

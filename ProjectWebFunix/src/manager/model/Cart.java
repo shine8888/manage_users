@@ -48,4 +48,17 @@ public class Cart {
 	public List<Product> getItems(){
 		return items;
 	}
+	
+	public static void main(String[] args) {
+		Cart c = new Cart();
+		Product p = new Product(1, "Ip", "Khong", 12, "goole.", "Lux", "Apple");
+		Product p2 = new Product(2, "Galyx", "Khong", 12, "goole.", "Lux", "SamSung");
+		Product p3 = new Product(3, "Nokia", "Khong", 12, "goole.", "Lux", "Nokia");
+		
+		c.add(p);
+		c.add(p2);
+		c.add(p3);
+		
+		System.out.println(c.getItems().get(1).getBrand());
+	}
 }

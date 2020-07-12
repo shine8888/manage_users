@@ -34,7 +34,8 @@ body {
 }
 
 .topnav-right a {
-	position: center; display : block;
+	position: center;
+	display: block;
 	color: #f2f2f2;
 	text-align: center;
 	padding: 14px 16px;
@@ -43,7 +44,6 @@ body {
 }
 
 /* Row */
-
 .item {
 	padding: 0;
 	height: 500px;
@@ -57,11 +57,13 @@ body {
 	height: 400px;
 	max-width: 100%;
 	max-height: 100%;
+	margin-top: 20px;
 }
 
 .item p {
 	margin-left: 40px;
 }
+
 /* Footer */
 .footer {
 	background-color: #aaa;
@@ -127,4 +129,48 @@ body {
 .leftcolumn img {
 	max-width: 100%;
 	max-height: 100%;
+}
+
+/* Paging Table */
+.paging-table {
+	height: 100px;
+	margin-left: 50%;
+}
+
+.lbl_paging {
+	padding-right: 10px;
+	color: #000000;
+	text-align: left;
+	font-size: 12px;
+}
+
+.add-cart {
+  background-color: #b8bee3;
+  border: none;
+  color: #b01048;
+  padding: 8px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 3px;
+}
+
+
+/* Table Order */
+#table-infor {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+#table-infor td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+#inputChangeClass {
+width: 80px;
 }

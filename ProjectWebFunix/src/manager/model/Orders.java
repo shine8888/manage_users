@@ -25,7 +25,7 @@ public class Orders {
 
 	public Orders(int orderId, float price, int status, Date orderDate, String address, String phoneNumber,
 			List<ProductOrders> lp, String userMail, Date receivedDate) {
-
+		
 	}
 
 	public Orders(String userMail, int status, String discount, String address, String phoneNumber, Date receivedDate) {
