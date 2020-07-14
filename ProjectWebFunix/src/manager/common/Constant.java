@@ -41,5 +41,6 @@ public class Constant {
 	public static final String FILE_JSP_PATH = "View/jsp";
 	public static final String HOME_PATH = "/Home.jsp";
 	public static final String INFOR_PRODUCT_PATH = "/InforProduct.jsp";
+	public static final String CART_PATH = "/Cart.jsp";
 	
 }

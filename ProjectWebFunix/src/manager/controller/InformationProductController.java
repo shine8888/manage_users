@@ -34,8 +34,8 @@ public class InformationProductController extends HttpServlet {
 			System.out.println(product.toString() + "Quang");
 			request.setAttribute("product", product);
 			
-			RequestDispatcher rq = request.getRequestDispatcher(Constant.FILE_JSP_PATH + Constant.INFOR_PRODUCT_PATH);
-			rq.forward(request, response);
+			RequestDispatcher rd = request.getRequestDispatcher(Constant.FILE_JSP_PATH + Constant.INFOR_PRODUCT_PATH);
+			rd.forward(request, response);
 		} catch (Exception e) {
 			
 		}

@@ -1,6 +1,8 @@
 package manager.controller;
 
 import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -42,13 +44,16 @@ public class AddToCartController extends HttpServlet {
 			cart.add(p);
 			Cart sessionCart = (Cart) session.getAttribute("sessionCart");
 			if (sessionCart == null) {
+				sessionCart = new Cart();
 				session.setAttribute("sessionCart", cart);
+				System.out.println("Cart dang null");
 			}
-			sessionCart = new Cart();
 			sessionCart.add(p);
+			System.out.println(sessionCart.getItems().size()+" day la co");
 			session.setAttribute("sessionCart", sessionCart);
 			
-			response.sendRedirect(Constant.FILE_JSP_PATH+"/Cart.jsp");
+			RequestDispatcher rd = request.getRequestDispatcher(Constant.FILE_JSP_PATH+Constant.CART_PATH);
+			rd.forward(request, response);
 
 		} catch (Exception e) {
 			e.printStackTrace();

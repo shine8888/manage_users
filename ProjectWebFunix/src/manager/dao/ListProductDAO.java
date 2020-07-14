@@ -43,7 +43,7 @@ public class ListProductDAO extends BaseDAO {
 				while (rs.next()) {
 					Product p = new Product();
 					p.setName(rs.getString("product_name"));
-					p.setPrice(rs.getInt("product_price"));
+					p.setPrice(rs.getFloat("product_price"));
 					p.setSrc(rs.getString("product_img_source"));
 					p.setBrand(rs.getString("product_band"));
 					listItems.add(p);
@@ -85,7 +85,7 @@ public class ListProductDAO extends BaseDAO {
 					p.setId(rs.getInt("product_id"));
 					p.setName(rs.getString("product_name"));
 					p.setDescription(rs.getString("product_des"));
-					p.setPrice(rs.getInt("product_price"));
+					p.setPrice(rs.getFloat("product_price"));
 					p.setSrc(rs.getString("product_img_source"));
 				}
 
@@ -136,7 +136,7 @@ public class ListProductDAO extends BaseDAO {
 					p.setId(rs.getInt("product_id"));
 					p.setName(rs.getString("product_name"));
 					p.setDescription(rs.getString("product_des"));
-					p.setPrice(rs.getInt("product_price"));
+					p.setPrice(rs.getFloat("product_price"));
 					p.setSrc(rs.getString("product_img_source"));
 					p.setType(rs.getString("product_type"));
 					p.setBrand(rs.getString("product_band"));

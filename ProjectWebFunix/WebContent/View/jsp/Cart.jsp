@@ -14,28 +14,36 @@
 </head>
 <body>
 	<%@ include file="Header.jsp"%>
-		<table id="table-infor">
+
+	<table id="table-infor">
+		<tr>
+			<th>Products in cart</th>
+			<th>Price</th>
+			<th>Quantity</th>
+			<th>Total Amount</th>
+			<th>Delete</th>
+		</tr>
+
+		<jsp:useBean id="sessionCart" class="manager.model.Cart"
+			scope="session" />
+		<%
+			int sum = sessionCart.getItems().size();
+		%>
+		<c:forEach var="i" begin="0" end="<%=sum - 1%>">
 			<tr>
-				<th>Products in cart</th>
-				<th>Price</th>
-				<th>Quantity</th>
-				<th>Total Amount</th>
-				<th>Delete</th>
-			</tr>
-			<jsp:useBean id="sessionCart" class="manager.model.Cart" scope="session" />
-			 <% for(int i = 0; i < sessionCart.getItems().size(); i+=1) { %>
-			<tr>
-				<td>${sessionCart.getItems().get(i).getNumber() }</td>
+				<td>${sessionCart.getItems().get(i).getName() }</td>
+
 				<td id="price">${sessionCart.getItems().get(i).getPrice() }</td>
 				<td><input id="inputChangeClass" class="is-valid" type="number"
-					min="1" max="20" value="${sessionCart.getItems().get(i).getNumber() }"
+					min="1" max="20"
+					value="${sessionCart.getItems().get(i).getNumber() }"
 					oninput="Calculation()" /></td>
 				<td id="total-amount">${sessionCart.getItems().get(i).getNumber()*sessionCart.getItems().get(i).getPrice()}</td>
 				<td><input type="button" value="Delete Item"
 					onclick="deleteRow(this)"></td>
 			</tr>
-			<% } %>
-		</table>
+		</c:forEach>
+	</table>
 	<%@ include file="Footer.jsp"%>
 </body>
 </html>
