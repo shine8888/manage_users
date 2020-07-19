@@ -15,6 +15,17 @@ public class Account {
 	private String phone;
 	private String password;
 	private int role;
+	private String salt;
+
+	public Account(String accountName, String email, String address, String phone, String password, int role, String salt) {
+		this.accountName = accountName;
+		this.email = email;
+		this.address = address;
+		this.phone = phone;
+		this.password = password;
+		this.role = role;
+		this.salt = salt;
+	}
 
 	public Account(String accountName, String email, String address, String phone, String password, int role) {
 		this.accountName = accountName;
@@ -24,7 +35,6 @@ public class Account {
 		this.password = password;
 		this.role = role;
 	}
-
 	public Account() {
 	}
 	public String getAccountName() {
@@ -74,6 +84,13 @@ public class Account {
 	public void setRole(int role) {
 		this.role = role;
 	}
-
+	
+	public String getSalt() {
+		return salt;
+	}
+	
+	public void setSalt(String salt) {
+		this.salt = salt;
+	}
 	
 }

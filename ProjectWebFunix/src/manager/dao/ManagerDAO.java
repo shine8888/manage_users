@@ -8,7 +8,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import manager.common.Common;
 import manager.model.Account;
+
 
 /**
  * @author Kiều Văn Quang
@@ -142,5 +144,38 @@ public class ManagerDAO extends BaseDAO {
 			closeConnection();
 		}
 		return acc;
+	}
+	
+	public boolean checkExistLoginId(String userName, String password) {
+		// Khởi tạo đối tượng TblUserEntity
+		Account acc = null;
+		// Tạo biến kiểm tra check
+		boolean check = false;
+		// Mở try
+		try {
+			// Gán giá trị cho user
+			acc = dao.getTblUserByUserName(userName);
+			// Kiểm tra nếu user có giá trị null
+			if (acc == null) {
+				return check;
+			}
+			// Lấy về giá trị password
+			String pass = acc.getPassword();
+			String salt = acc.getSalt();
+			// Mã hóa mật khẩu
+			String passswordEncrypt = Common.encryptPassword(password, salt);
+			// So sánh mật khẩu
+			if (Common.compareString(pass, passswordEncrypt)) {
+				check = true;
+			}
+			// Bắt lỗi
+		} catch (Exception e) {
+			// Thông báo lỗi
+			String methodName = new Object() {
+			}.getClass().getEnclosingMethod().getName();
+			String className = this.getClass().getName();
+			System.out.println(className + ". " + methodName + ". Error : " + e.getMessage());
+		}
+		return check;
 	}
 }

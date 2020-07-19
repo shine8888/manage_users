@@ -49,10 +49,11 @@ public class AddToCartController extends HttpServlet {
 				System.out.println("Cart dang null");
 			}
 			sessionCart.add(p);
-			System.out.println(sessionCart.getItems().size()+" day la co");
+			sessionCart.getAmount();
+			System.out.println(sessionCart.getAmount() + " day la co");
 			session.setAttribute("sessionCart", sessionCart);
-			
-			RequestDispatcher rd = request.getRequestDispatcher(Constant.FILE_JSP_PATH+Constant.CART_PATH);
+
+			RequestDispatcher rd = request.getRequestDispatcher(Constant.FILE_JSP_PATH + Constant.CART_PATH);
 			rd.forward(request, response);
 
 		} catch (Exception e) {
@@ -67,8 +68,35 @@ public class AddToCartController extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+		try {
+			HttpSession session = request.getSession();
+			String idDelete = request.getParameter("id-del");
+			String addQuantity = request.getParameter("add");
+			Cart sessionCart = (Cart) session.getAttribute("sessionCart");
+			if (!"".equals(idDelete) || idDelete != null) {
+				int id = Common.convertStringToInt(idDelete, -1);
+				if (id >= 0) {
+					sessionCart.remove(id);
+				}
+			}
+			
+			if(!"".equals(addQuantity) && addQuantity != null) {
+				String[] list = Common.splitString(addQuantity);
+				System.out.println("Dang sai o day");
+				int id = Common.convertStringToInt(list[0], -1);
+				int amount = Common.convertStringToInt(list[1], -1);
+				if(id != -1 && amount != -1) {
+					sessionCart.addAmount(id, amount);
+				}				
+			}
+			session.setAttribute("sessionCart", sessionCart);
+
+			RequestDispatcher rd = request.getRequestDispatcher(Constant.FILE_JSP_PATH + Constant.CART_PATH);
+			rd.forward(request, response);
+		} catch (Exception e) {
+			System.out.println("Looix");
+		}
+
 	}
 
 }

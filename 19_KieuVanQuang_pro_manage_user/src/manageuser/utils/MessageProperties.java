@@ -1,8 +1,8 @@
 /**
  * Copyright(C) [2020]  [Luvina Sotfware Company]
- * [ConfigProperties.java], [Mar 21, 2020] [Kiều Văn Quang]
+ * [MessageProperties.java], [Apr 9, 2020] [Kiều Văn Quang]
  */
-package manager.logic;
+package manageuser.utils;
 
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -12,31 +12,29 @@ import java.util.Map;
 import java.util.Properties;
 
 /**
- * Class Đọc các thông tin thiết định kết nối tới database
- * 
  * @author Kiều Văn Quang
  *
  */
-public class ConfigProperties {
+public class MessageProperties {
 	// lưu các cặp <key, value> trong file properties
 	private static Map<String, String> mapDBProperties = new HashMap<String, String>();
 	static {
 		try {
 			// tạo đối tượng kiểu Properties
-			Properties properties = new Properties(); 
+			Properties properties = new Properties();
 			// đọc file properties
-			properties.load(new InputStreamReader(ConfigProperties.class.getClassLoader()
-					.getResourceAsStream(Constant.PROPERTIES_CONFIG), "UTF-8"));
-			// lưu các giá trị key trong file properties					
-			Enumeration<?> enumeration = properties.propertyNames(); 
+			properties.load(new InputStreamReader(
+					MessageErrorProperties.class.getClassLoader().getResourceAsStream(Constant.PROPERTIES_MESSAGE), "UTF-8"));
+			// lưu các giá trị key trong file properties
+			Enumeration<?> enumeration = properties.propertyNames();
 			// true nếu vẫn còn phần tử, false nếu tất cả phần tử đã được lấy ra
-			while (enumeration.hasMoreElements()) { 
+			while (enumeration.hasMoreElements()) {
 				// key = key tiếp theo
-				String key = (String) enumeration.nextElement(); 
+				String key = (String) enumeration.nextElement();
 				// lấy value tương ứng với key
-				String value = properties.getProperty(key); 
+				String value = properties.getProperty(key);
 				// thêm vào list
-				mapDBProperties.put(key, value); 
+				mapDBProperties.put(key, value);
 			}
 		} catch (IOException e) {
 			System.out.println(e.getMessage());
@@ -53,4 +51,5 @@ public class ConfigProperties {
 		String value = mapDBProperties.get(key);
 		return value;
 	}
+
 }

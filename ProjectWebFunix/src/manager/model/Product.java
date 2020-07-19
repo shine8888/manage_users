@@ -4,6 +4,11 @@
  */
 package manager.model;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+
+import manager.common.Common;
+
 /**
  * @author Kiều Văn Quang
  *
@@ -17,6 +22,7 @@ public class Product {
 	private String type;
 	private String brand;
 	private int number;
+	private double totalPrice;
 
 	public Product() {
 
@@ -106,6 +112,17 @@ public class Product {
 
 	public void setNumber(int number) {
 		this.number = number;
+	}
+
+	public double getTotalPrice() {
+		return totalPrice;
+	}
+
+	public void setTotalPrice(int number, float price) {
+		double input = number * price;
+		BigDecimal bd = new BigDecimal(input).setScale(2, RoundingMode.HALF_UP);
+		double total = bd.doubleValue();
+		this.totalPrice = total;
 	}
 
 }

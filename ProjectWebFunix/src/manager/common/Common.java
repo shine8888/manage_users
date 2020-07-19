@@ -4,6 +4,9 @@
  */
 package manager.common;
 
+import java.math.BigDecimal;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 
 
@@ -66,5 +69,42 @@ public class Common {
 		return ((currentPage - 1) * limit);
 	}
 	
+	public static String encryptPassword(String a, String b) {
+		String generatedPassword = null;
+		try {
+			// Create MessageDigest instance for SHA-1
+			MessageDigest md = MessageDigest.getInstance("SHA-1");
+			// Add password bytes to digest
+			// Get the hash's bytes
+			String passwordToHash = a + b;
+			byte[] bytes = md.digest(passwordToHash.getBytes());
+			// This bytes[] has bytes in decimal format;
+			// Convert it to hexadecimal format
+			StringBuilder sb = new StringBuilder();
+			for (int i = 0; i < bytes.length; i++) {
+				sb.append(Integer.toString((bytes[i] & 0xff) + 0x100, 16).substring(1));
+			}
+			// Get complete hashed password in hex format
+			generatedPassword = sb.toString();
+		} catch (NoSuchAlgorithmException e) {
+			System.out.println("Occured error in encryptPassword"+e.getMessage());
+		}
+		// Return result to method
+		return generatedPassword;
+	}
+
+	public static String[]  splitString(String a) {
+		String[] list = new String[2];
+		for (int i = 0; i < list.length; i++) {
+			list= a.split(";");
+		}
+		return list;
+	}
 	
+	public static BigDecimal round(float d, int decimalPlace) {
+	    BigDecimal bd = new BigDecimal(Float.toString(d));
+	    bd = bd.setScale(decimalPlace, BigDecimal.ROUND_HALF_UP);       
+	    return bd;
+	}
+
 }
