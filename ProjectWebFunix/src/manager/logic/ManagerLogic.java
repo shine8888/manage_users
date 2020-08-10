@@ -13,12 +13,12 @@ import manager.model.Account;
  */
 public class ManagerLogic {
 	public ManagerDAO md = new ManagerDAO();
-	
-	public boolean checkExistAccount(String username, int id) {
+
+	public boolean checkExistAccount(String username) {
 		boolean check = false;
 		try {
-			Account acc = md.getExistAccountName(username, 1);
-			if(acc != null && username.equals(acc.getAccountName())) {
+			Account acc = md.getExistAccountName(username);
+			if (acc != null && username.equals(acc.getAccountName())) {
 				check = true;
 			}
 		} catch (Exception e) {
@@ -26,17 +26,21 @@ public class ManagerLogic {
 		}
 		return check;
 	}
-	
+
 	public boolean checkExistEmail(String email, int role) {
 		boolean check = false;
 		try {
 			Account acc = md.getExistEmail(email, role);
-			if(acc != null && email.equals(acc.getEmail())) {
+			if (acc != null && email.equals(acc.getEmail())) {
 				check = true;
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return check;
+	}
+
+	public boolean checkLogin(String userName, String password) {
+		return md.checkExistLoginId(userName, password);
 	}
 }

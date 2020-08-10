@@ -18,14 +18,14 @@ function Delete(r,i) {
 
 function Calculation(id) {
 	
-	var i = (parseFloat(document.getElementById("quantity").value)).toFixed(2);
+	var i = (parseFloat(document.getElementById("quantity"+id).value)).toFixed(2);
 	var j = (parseFloat(document.getElementById("price").innerHTML)).toFixed(2);
 	if(isNaN(i) || i < 0){
 		return;
 	}
 	document.getElementById("total").innerHTML = (i*j).toFixed(2);
 	
-	var quantity = parseInt(document.getElementById("quantity").value);
+	var quantity = parseInt(document.getElementById("quantity"+id).value);
 	var form = document.createElement("form");
 	document.body.appendChild(form);
 	form.method = "post";

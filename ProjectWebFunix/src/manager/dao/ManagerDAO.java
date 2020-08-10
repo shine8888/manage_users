@@ -24,26 +24,25 @@ public class ManagerDAO extends BaseDAO {
 	 * @return
 	 * @throws Exception
 	 */
-	public Account getExistAccountName(String accountName, int role) throws Exception {
+	public Account getExistAccountName(String accountName) throws Exception {
 		Account acc = null;
 		try {
 			openConnection();
 			if (conn != null) {
 				StringBuilder sql = new StringBuilder();
-				sql.append("SELECT a.user_name, a.account_role, a.password  ");
+				sql.append("SELECT a.user_name, a.account_role, a.password, a.salt  ");
 				sql.append("FROM account a ");
-				sql.append("WHERE user_name = ? ");
-				sql.append("AND account_role = ?;");
+				sql.append("WHERE user_name = ? ;");
 				PreparedStatement pre = conn.prepareStatement(sql.toString());
 				int i = 1;
 				pre.setString(i++, accountName);
-				pre.setInt(i++, role);
 				ResultSet rs = pre.executeQuery();
 				while (rs.next()) {
 					acc = new Account();
 					acc.setAccountName(rs.getString("user_name"));
 					acc.setPassword(rs.getString("password"));
 					acc.setRole(rs.getInt("account_role"));
+					acc.setSalt(rs.getString("salt"));
 				}
 			}
 		} catch (SQLException e) {
@@ -145,6 +144,7 @@ public class ManagerDAO extends BaseDAO {
 		}
 		return acc;
 	}
+
 	
 	public boolean checkExistLoginId(String userName, String password) {
 		// Khởi tạo đối tượng TblUserEntity
@@ -154,7 +154,7 @@ public class ManagerDAO extends BaseDAO {
 		// Mở try
 		try {
 			// Gán giá trị cho user
-			acc = dao.getTblUserByUserName(userName);
+			acc = getExistAccountName(userName);
 			// Kiểm tra nếu user có giá trị null
 			if (acc == null) {
 				return check;

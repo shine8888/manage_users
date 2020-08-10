@@ -41,13 +41,13 @@
 						<td>${sessionCart.getItems().get(i).getName() }</td>
 
 						<td id="price" class="price">${sessionCart.getItems().get(i).getPrice() }</td>
-						<td class="quantity"><input id="quantity" type="number"
+						<td class="quantity"><input id="quantity${sessionCart.getItems().get(i).getId()}" type="number"
 							min="1" max="20"
 							value="${sessionCart.getItems().get(i).getNumber() }"
 							oninput="Calculation('${sessionCart.getItems().get(i).getId()}')" /></td>
 						<td id="total" class="total"><fmt:formatNumber
 								value="${sessionCart.getItems().get(i).getPrice()*sessionCart.getItems().get(i).getNumber() }"
-								type="number" groupingUsed="false" maxFractionDigits="2" /></td>
+								type="number" groupingUsed="false" maxFractionDigits="2"/></td>
 						<td><input type="button" value="Delete Item"
 							onclick="Delete(this, '${sessionCart.getItems().get(i).getId()}')"></td>
 					</tr>

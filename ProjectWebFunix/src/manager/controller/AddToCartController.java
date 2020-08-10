@@ -82,11 +82,11 @@ public class AddToCartController extends HttpServlet {
 			
 			if(!"".equals(addQuantity) && addQuantity != null) {
 				String[] list = Common.splitString(addQuantity);
-				System.out.println("Dang sai o day");
-				int id = Common.convertStringToInt(list[0], -1);
+				System.out.println(addQuantity);
+				int idAdd = Common.convertStringToInt(list[0], -1);
 				int amount = Common.convertStringToInt(list[1], -1);
-				if(id != -1 && amount != -1) {
-					sessionCart.addAmount(id, amount);
+				if(idAdd != -1 && amount != -1) {
+					sessionCart.addAmount(idAdd, amount);
 				}				
 			}
 			session.setAttribute("sessionCart", sessionCart);

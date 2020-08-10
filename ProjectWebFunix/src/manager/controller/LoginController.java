@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import manager.common.Constant;
+import manager.logic.ManagerLogic;
 
 
 
@@ -33,10 +34,11 @@ public class LoginController extends HttpServlet {
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
 		String contextPath = request.getContextPath();
+		ManagerLogic ml = new ManagerLogic();
 		
-		// Read information of account in web.xml
-		String uid = getServletContext().getInitParameter("username");
-		String pwd = getServletContext().getInitParameter("password");
+//		// Read information of account in web.xml
+//		String uid = getServletContext().getInitParameter("username");
+//		String pwd = getServletContext().getInitParameter("password");
 		
 		// Declare a list error
 		List<String> listError = new ArrayList<String>();
@@ -54,7 +56,7 @@ public class LoginController extends HttpServlet {
 		// Check matching username and password
 		if(listError.size() == 0) {
 			
-			if(uid.equals(username) && pwd.equals(password)) {
+			if(ml.checkLogin(username, password)) {
 				// Điều hướng đến servlet ListUser.do vào màn hình ADM002
 				response.sendRedirect(contextPath + Constant.URL_LIST_ITEMS+"?mode=default");
 			
